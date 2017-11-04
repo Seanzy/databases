@@ -5,41 +5,23 @@ var Promise = require('bluebird');
 module.exports = {
   messages: {
     get: function (req, res) {
-      return new Promise((resolve, reject) => {
-        resolve(models.messages.get(req)); 
-      }).then( (messages) => {
-        console.log(messages);
-        //send back with res whatever we got from models.messages.get
-        res.send(messages);
-      });
+      models.messages.get(req, res); //sends response back to router   
+  
     }, // a function which handles a get request for all messages
     post: function (req, res) {
-      return new Promise((resolve, reject) => {
-        resolve(models.messages.post(req)); 
-      }).then( () => {
-        //send back response saying post worked
-        res.send("congrats?");
-      });
+      models.messages.post(req); 
+      
     } // a function which handles posting a message to the database
   },
 
   users: {
     // Ditto as above
     get: function (req, res) {
-      return new Promise((resolve, reject) => {
-        resolve(models.users.get(req)); 
-      }).then( (users) => {
-        //send back with res whatever we got from models.messages.get
-        res.send(users);
-      });    
+      models.users.get(req, res); 
+     
     },
     post: function (req, res) {
-      return new Promise((resolve, reject) => {
-        resolve(models.users.post(req)); 
-      }).then( () => {
-        //send back response saying post worked
-        res.send("congrats?");
-      });    
+      models.users.post(req); 
     }
   }
 };
