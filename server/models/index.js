@@ -13,37 +13,49 @@ module.exports = {
   
   messages: {
     get: function (req, res) {
-      
-      db.query((`SELECT messages FROM messages`), function(err, rows, fields) {
+      db.query(('SELECT messages FROM messages'), function(err, rows, fields) {
         if (err) {
           throw err; 
         }
-  
-        for (var i in rows) {
-          console.log('Get request', rows[i]);
-        }
         
+        
+        // return rows;
+        //send back messages
+        let messageArr = [];
+        for (let i = 0; i < rows.length; i++) {
+          messageArr.push(rows[i].messages);
+        }
+        return(messageArr);
+        // res.end(rows[0]);
       });
+
+      
       
     }, // a function which produces all the messages
-    post: function () {
-      console.log("in models.messages.post");
+    post: function (req) {
+      db.query((`INSERT INTO messages (userId, messages, roomId) VALUES (${req} , ${req}, ${req})`), function(err, rows, fields){});
       
-      // connection.query('INSERT INTO messages VALUES ');
-      // return data;
     } // a function which can be used to insert a message into the database
   },
 
   users: {
     // Ditto as above.
     get: function () {
-      //connection.query(`SELECT username FROM users`);
+      db.query(('SELECT username FROM users'), function(err, rows, fields) {
+        if (err) {
+          throw err; 
+        }
+        let userArr = [];
+        for (let i = 0; i < rows.length; i++) {
+          userArr.push(rows[i].username);
+        }
+        return(userArr);
+      });
     },
-    post: function () {
-     
-      //connection.query(`INSERT INTO users VALUES `);
-        
+    post: function (req) {
+      db.query((`INSERT INTO users (userId, username) VALUES (${req} , ${req})`), function(err, rows, fields){});
+      
+  
     } 
   }
 };
-

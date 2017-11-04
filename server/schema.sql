@@ -1,13 +1,12 @@
+DROP DATABASE IF EXISTS chat;
+   
 CREATE DATABASE chat;
 
 USE chat;
 
-CREATE TABLE messages (userId VARCHAR(3), messages VARCHAR(255), roomId VARCHAR(3), FOREIGN KEY(userId) REFERENCES users(userId), FOREIGN KEY(roomId) REFERENCES rooms(roomId)
+CREATE TABLE messages (userId VARCHAR(3), message VARCHAR(255), roomId VARCHAR(3), FOREIGN KEY(userId) REFERENCES users(userId), FOREIGN KEY(roomId) REFERENCES rooms(roomId)
   
 );
-
-INSERT INTO messages (userid, messages, roomId)
-VALUES (0, "hello", 1);
 
 CREATE TABLE users (userId VARCHAR(3), username VARCHAR(20), PRIMARY KEY(userId)
   
