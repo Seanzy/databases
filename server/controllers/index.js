@@ -8,13 +8,14 @@ module.exports = {
       return new Promise((resolve, reject) => {
         resolve(models.messages.get(req)); 
       }).then( (messages) => {
+        console.log(messages);
         //send back with res whatever we got from models.messages.get
         res.send(messages);
       });
     }, // a function which handles a get request for all messages
     post: function (req, res) {
       return new Promise((resolve, reject) => {
-        resolve(models.messages.get(req)); 
+        resolve(models.messages.post(req)); 
       }).then( () => {
         //send back response saying post worked
         res.send("congrats?");
