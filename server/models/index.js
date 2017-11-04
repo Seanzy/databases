@@ -50,18 +50,18 @@ module.exports = {
         
         console.log("body is ", body);
         //grabs user ID
-        db.query((`SELECT userId FROM users WHERE users.username = ${userName}`), function(err, rows, fields) {
+        db.query((`SELECT userId FROM users WHERE users.username = "${userName}"`), function(err, rows, fields) {
           if (err) {
             throw err; 
           } 
           var userId = rows[0].userId;
           console.log("user id" , userId);
-          db.query((`SELECT roomId FROM rooms WHERE rooms.roomname = ${roomName}`), function(err, rows, fields) {
+          db.query((`SELECT roomId FROM rooms WHERE rooms.roomname = "${roomName}"`), function(err, rows, fields) {
             if (err) {
               throw err; 
             } 
             var roomId = rows[0].roomId;
-            db.query((`INSERT INTO messages (userId, messages, roomId) VALUES (${userId}, ${message}, ${roomId})`), 
+            db.query((`INSERT INTO messages (userId, message, roomId) VALUES (${userId}, "${message}", ${roomId})`), 
               function(err, rows, fields) { 
                 if (err) {
                   throw err; 
