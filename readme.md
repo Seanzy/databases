@@ -3,7 +3,7 @@ by Edwin Chu and Sean Gurson
 
 Setup
 do npm install  
-mysql -u student -p password is student
+mysql -u student -p password is (check secure pass file on local computer)
 nodemon server/spec/app.js (or wherever app.js is)
 bower install in client
 
